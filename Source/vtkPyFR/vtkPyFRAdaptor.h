@@ -24,7 +24,7 @@ extern "C"
   //By default all items use a coefficient of 0.5 and a power of 25
   //coefficient of 0 turns of specular highlights
   //power is 0 - 100
-  void CatalystSpecularLighting(void* p, float coefficient, float power);
+  void CatalystSpecularLighting(void* p, float coefficient, float power, int view);
 
   void CatalystFilenamePrefix(void* p, const char* pfix);
   void CatalystSetColorTable(void*, const uint8_t* rgba, const float* loc,

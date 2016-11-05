@@ -388,7 +388,8 @@ PV_PLUGIN_IMPORT(pyfr_plugin_fp64)
   // Initialize the "link"
   this->InsituLink->InsituInitialize(vtkSMProxyManager::GetProxyManager()->
                                      GetActiveSessionProxyManager());
-  this->SetSpecularLighting(0.8,50);
+  this->SetSpecularLighting(0, 0, 0);
+  this->SetSpecularLighting(0, 0, 1);
 
 }
 
@@ -569,17 +570,17 @@ void vtkPyFRPipeline::SetResolution(uint32_t width, uint32_t height)
 }
 
 //----------------------------------------------------------------------------
-void vtkPyFRPipeline::SetSpecularLighting(float coefficient, float power)
+void vtkPyFRPipeline::SetSpecularLighting(float coefficient, float power, int view)
 {
   vtkSMSessionProxyManager* sessionProxyManager =
     vtkSMProxyManager::GetProxyManager()->GetActiveSessionProxyManager();
   vtkNew<vtkCollection> views;
   sessionProxyManager->GetProxies("views",views.GetPointer());
   const size_t nviews = views->GetNumberOfItems();
-  for (int i=0; i < nviews; i++)
+  //for (int i=0; i < nviews; i++)
     {
     vtkSMViewProxy* viewProxy =
-      vtkSMViewProxy::SafeDownCast(views->GetItemAsObject(i));
+      vtkSMViewProxy::SafeDownCast(views->GetItemAsObject(view));
     vtkSMRenderViewProxy* rview = vtkSMRenderViewProxy::SafeDownCast(viewProxy);
     vtkRenderer* ren = rview->GetRenderer();
 
