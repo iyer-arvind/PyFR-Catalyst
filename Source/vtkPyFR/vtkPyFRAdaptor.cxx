@@ -115,7 +115,7 @@ void CatalystImageResolution(void*, const uint32_t imgsz[2])
 }
 
 //----------------------------------------------------------------------------
-void CatalystSpecularLighting(void*, float coefficient, float power)
+void CatalystSpecularLighting(void*, float coefficient, float power, int view)
 {
   if(Processor == NULL)
     {
@@ -124,7 +124,7 @@ void CatalystSpecularLighting(void*, float coefficient, float power)
     }
   vtkPyFRPipeline* pipeline =
     vtkPyFRPipeline::SafeDownCast(Processor->GetPipeline(0));
-  pipeline->SetSpecularLighting(coefficient, power);
+  pipeline->SetSpecularLighting(coefficient, power, view);
 }
 
 void

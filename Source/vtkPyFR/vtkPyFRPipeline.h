@@ -31,7 +31,7 @@ public:
   virtual int RequestDataDescription(vtkCPDataDescription* dataDescription);
 
   virtual void SetResolution(uint32_t w, uint32_t h);
-  virtual void SetSpecularLighting(float coefficient, float power);
+  virtual void SetSpecularLighting(float coefficient, float power, int view);
   virtual int CoProcess(vtkCPDataDescription* dataDescription);
 
   virtual void SetColorTable(const uint8_t* rgba, const float* loc, size_t n, int pipeline);
