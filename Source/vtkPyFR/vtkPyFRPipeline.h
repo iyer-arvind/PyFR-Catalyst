@@ -43,7 +43,7 @@ public:
                               int number, double spacing);
 
   virtual void SetClipPlanes(float origin1[3], float normal1[3],
-                             float origin2[3], float normal2[3]);
+                             float pitch);
 
   virtual void SetViewToCoProcess(int view){this->view_to_coprocess=view;printf("Setting view to co-process: %d\n",this->view_to_coprocess);}
 
@@ -73,6 +73,7 @@ private:
 
   vtkSmartPointer<vtkSMSourceProxy> Clip1;
   vtkSmartPointer<vtkSMSourceProxy> Clip2;
+  
   vtkSmartPointer<vtkSMSourceProxy> Contour;
   vtkSmartPointer<vtkSMSourceProxy> Slice;
 

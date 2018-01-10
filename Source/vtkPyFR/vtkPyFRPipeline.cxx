@@ -682,17 +682,25 @@ void vtkPyFRPipeline::SetSlicePlanes(float origin[3], float normal[3],
 
 //----------------------------------------------------------------------------
 void vtkPyFRPipeline::SetClipPlanes(float origin1[3], float normal1[3],
-                                    float origin2[3], float normal2[3])
+                                    float pitch)
 {
   for(int i=0; i < 3; ++i)
     {
     vtkSMPropertyHelper(this->Clip1,"Origin").Set(i, origin1[i]);
     vtkSMPropertyHelper(this->Clip1,"Normal").Set(i, normal1[i]);
-    vtkSMPropertyHelper(this->Clip2,"Origin").Set(i, origin2[i]);
-    vtkSMPropertyHelper(this->Clip2,"Normal").Set(i, normal2[i]);
+    normal1[i] *= -1;
     }
+  origin1[1] += pitch;
+  for(int i=0; i < 3; ++i)
+    {
+    vtkSMPropertyHelper(this->Clip2,"Origin").Set(i, origin1[i]);
+    vtkSMPropertyHelper(this->Clip2,"Normal").Set(i, normal1[i]);
+    normal1[i] *= -1;
+    }
+    
     this->Clip1->UpdatePropertyInformation();
     this->Clip1->UpdateVTKObjects();
+  
     this->Clip2->UpdatePropertyInformation();
     this->Clip2->UpdateVTKObjects();
 }

@@ -188,7 +188,7 @@ void CatalystSetSlicePlanes(float origin[3], float normal[3],
 
 //----------------------------------------------------------------------------
 void CatalystSetClipPlanes(float origin1[3], float normal1[3],
-                           float origin2[3], float normal2[3])
+                           float pitch)
 {
   if(Processor == NULL)
     {
@@ -197,7 +197,7 @@ void CatalystSetClipPlanes(float origin1[3], float normal1[3],
     }
   vtkPyFRPipeline* pipeline =
     vtkPyFRPipeline::SafeDownCast(Processor->GetPipeline(0));
-  pipeline->SetClipPlanes(origin1,normal1,origin2,normal2);
+  pipeline->SetClipPlanes(origin1,normal1, pitch);
 }
 
 //----------------------------------------------------------------------------
