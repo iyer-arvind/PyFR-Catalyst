@@ -47,7 +47,11 @@ public:
 
   virtual void SetViewToCoProcess(int view){this->view_to_coprocess=view;printf("Setting view to co-process: %d\n",this->view_to_coprocess);}
 
-  vtkSmartPointer<vtkSMSourceProxy> GetContour() { return this->Contour; }
+  vtkSmartPointer<vtkSMSourceProxy> GetContour1() { return this->Contour1; }
+  /*
+  vtkSmartPointer<vtkSMSourceProxy> GetContour2() { return this->Contour2; }
+  */
+  
   vtkSmartPointer<vtkSMSourceProxy> GetSlice()   { return this->Slice;   }
 
 protected:
@@ -69,15 +73,22 @@ private:
   vtkLiveInsituLink* InsituLink;
 
   std::string FileName;
+  float pitch;
   int view_to_coprocess;
 
   vtkSmartPointer<vtkSMSourceProxy> Clip1;
   vtkSmartPointer<vtkSMSourceProxy> Clip2;
   
-  vtkSmartPointer<vtkSMSourceProxy> Contour;
+  vtkSmartPointer<vtkSMSourceProxy> Clip3;
+  vtkSmartPointer<vtkSMSourceProxy> Clip4;
+  
+  
+  vtkSmartPointer<vtkSMSourceProxy> Contour1;
+  vtkSmartPointer<vtkSMSourceProxy> Contour2;
+  
   vtkSmartPointer<vtkSMSourceProxy> Slice;
 
-  vtkSmartPointer<vtkPyFRMapper> ActiveMapper1, ActiveMapper2;
+  vtkSmartPointer<vtkPyFRMapper> ActiveMapper1, ActiveMapper2, ActiveMapper3;
 
   //vtkSmartPointer<vtkTextActor> Timestamp;
 

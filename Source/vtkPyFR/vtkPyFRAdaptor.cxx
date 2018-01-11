@@ -223,11 +223,22 @@ void CatalystFinalize(void* p)
   root(printf("[catalyst] finalizing %p at %s:%d\n", p, __FILE__, __LINE__));
 
   { //release contour gpu memory
-  vtkObjectBase* clientSideContourBase = pipeline->GetContour()->GetClientSideObject();
+      {
+  vtkObjectBase* clientSideContourBase = pipeline->GetContour1()->GetClientSideObject();
   vtkPyFRContourFilter* realContour =
     vtkPyFRContourFilter::SafeDownCast(clientSideContourBase);
   vtkPyFRContourData* cData = vtkPyFRContourData::SafeDownCast(realContour->GetOutput());
   cData->ReleaseResources();
+      }
+      /*
+      {
+    vtkObjectBase* clientSideContourBase = pipeline->GetContour2()->GetClientSideObject();
+  vtkPyFRContourFilter* realContour =
+    vtkPyFRContourFilter::SafeDownCast(clientSideContourBase);
+  vtkPyFRContourData* cData = vtkPyFRContourData::SafeDownCast(realContour->GetOutput());
+  cData->ReleaseResources();
+      }
+      */
   }
 
   { //release slice gpu memory
